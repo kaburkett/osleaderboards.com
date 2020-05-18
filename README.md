@@ -1,37 +1,19 @@
-## Welcome to GitHub Pages
+## Which OS Is Best
 
-You can use the [editor on GitHub](https://github.com/kaburkett/osleaderboards.com/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+During our normal working days, we highlight each instance where an operating system lets us down. Each time we encounter a situation, a tally is either added or removed from each operating system. Every time a tally is added or removed, we add an even and explanation to our tally log. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Reviewing the tally log will highlight all the issues or grand features of each operating system
 
-### Markdown
+## The Tally
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+| Windows | Linux | Apple |
+| --- | --- | --- |
+| 0 | 0 | 0 |
 
-```markdown
-Syntax highlighted code block
+## Event Log
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kaburkett/osleaderboards.com/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+| Operating System | Added or Removed | Reason for tally change |
+| --- | --- | --- |
+| Windows | Added 0 | Beginning of event log |
+| Linux | Added 0 | Beginning of event log |
+| Apple | Added 0 | Beginning of event log |
