@@ -6,14 +6,17 @@ Reviewing the tally log will highlight all the issues or grand features of each 
 
 ## The Tally
 
-| Windows | Linux | MacOs | Darwin | iOs | Symbian (Nokia) |
-| ------- | ----- | ----- | ------ | --- | --------------- |
-|     -49 |  +385 |    +6 |     +1 |  +5 |              +5 |
+| Android | iOS | Linux | macOS | Symbian (Nokia) | Windows |
+| ------- | --- | ----- | ----- | --------------- | ------- |
+|       0 |   0 |     0 |     0 |               0 |       0 |
 
 ## Event Log
 
 | Operating System | Added or Removed | Reason for tally change |
 | ---------------- | ---------------- | ----------------------- |
+| All OSes         | Zero             | Reset count for OSes    |
+| Darwin           | Removed OS       | Kernel, not OS          |
+| Android          | Added          0 | Beginning of event log  |
 | Symbian (Nokia)  | Added          1 | Lack of Surveillance    |
 | Windows          | Removed       49 | Beginning of event log  |
 | Linux            | Added        385 | Beginning of event log  |
