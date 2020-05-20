@@ -8,12 +8,13 @@ Reviewing the tally log will highlight all the issues or grand features of each 
 
 | Android | iOS | Linux | macOS | Symbian (Nokia) | Windows |
 | ------- | --- | ----- | ----- | --------------- | ------- |
-|       1 |   1 |     1 |    -1 |               0 |       0 |
+|       1 |   1 |     1 |     0 |               0 |       0 |
 
 ## Event Log
 
 | Operating System | Added or Removed | Reason for tally change |
 | ---------------- | ---------------- | ----------------------- |
+| macOS            | Added          1 | Unix-like terminal      |
 | macOS            | Removed        1 | Mac tax                 |
 | Linux            | Added          1 | Unix-like terminal      |
 | iOS              | Added          1 | Better permissions ctr  |
