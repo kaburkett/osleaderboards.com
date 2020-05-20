@@ -8,12 +8,13 @@ Reviewing the tally log will highlight all the issues or grand features of each 
 
 | Android | iOS | Linux | macOS | Symbian (Nokia) | Windows |
 | ------- | --- | ----- | ----- | --------------- | ------- |
-|       1 |   0 |     0 |     0 |               0 |       0 |
+|       1 |   1 |     0 |     0 |               0 |       0 |
 
 ## Event Log
 
 | Operating System | Added or Removed | Reason for tally change |
 | ---------------- | ---------------- | ----------------------- |
+| iOS              | Added          1 | Better permissions ctr  |
 | Android          | Added          1 | Unlocked bootloader     |
 | All OSes         | Zero             | Reset count for OSes    |
 | Darwin           | Removed OS       | Kernel, not OS          |
