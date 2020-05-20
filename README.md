@@ -19,4 +19,4 @@ Reviewing the tally log will highlight all the issues or grand features of each 
 | MacOs            | Added          6 | Beginning of event log  |
 | Darwin           | Added          1 | Beginning of event log  |
 | iOs              | Added          5 | Beginning of event log  |
-| Symbian (Nokia)  | Added          5 | Beginning of event log  |
+| Symbian (Nokia)  | Added          0 | Beginning of event log  |
