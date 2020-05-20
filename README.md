@@ -14,6 +14,7 @@ Reviewing the tally log will highlight all the issues or grand features of each 
 
 | Operating System | Added or Removed | Reason for tally change |
 | ---------------- | ---------------- | ----------------------- |
+| Symbian (Nokia)  | Added          1 | Lack of Surveillance    |
 | Windows          | Removed       49 | Beginning of event log  |
 | Linux            | Added        385 | Beginning of event log  |
 | MacOs            | Added          6 | Beginning of event log  |
