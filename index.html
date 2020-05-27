@@ -52,6 +52,12 @@
       </div>
     </div>
 
+    <div class="loading">
+      <div class='uil-ring-css' style='transform:scale(0.79);'>
+        <div></div>
+      </div>
+    </div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -66,6 +72,16 @@
     </script>
 
     <script>
+
+    function toggleLoading(event){     
+      var loadingOverlay = document.querySelector('.loading'); 
+      document.activeElement.blur();
+      if (event == true){
+        loadingOverlay.classList.remove('hidden');
+      } else {
+        loadingOverlay.classList.add('hidden');
+      }
+    }
 
     /**
     * Populate history table
@@ -82,6 +98,7 @@
     $.post( "https://prod-30.southcentralus.logic.azure.com:443/workflows/b3e7676954bd495eb20fd70d312c8e8c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2X1QJNaW8EHhzUntRq5ZujDX43BYVo6gdLre7lQmcdE", function( chartdata ) {
       console.log(chartdata);
       $('#myChart').attr('src',chartdata); 
+      toggleLoading(false);
     });
     </script>
   </body>
