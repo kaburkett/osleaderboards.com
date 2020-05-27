@@ -58,8 +58,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="./vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="./vendor/jquery-3.5.1.min.js"></script>
     <script src="./vendor/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
 
@@ -99,6 +98,11 @@
           }
         }
       });
+    </script>
+
+    <script>$.post( "https://prod-18.southcentralus.logic.azure.com:443/workflows/601577ac5dfe47a7a0c9ea2273dbefb3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ek9E_AUcW3ycQ6SS9-Dw6MVIQ7zaG0rMiytaOV7ovCw", function( data ) {
+      alert( "Data Loaded: " + data );
+    });
     </script>
   </body>
 </html>
