@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+          <iframe id="myChart"></iframe>
 
           <h2>Vote History</h2>
           <div class="table-responsive">
@@ -63,45 +63,23 @@
       feather.replace()
     </script>
 
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
-
     <script>
 
+    /**
+    * Populate history table
+    **/
     $.post( "https://prod-18.southcentralus.logic.azure.com:443/workflows/601577ac5dfe47a7a0c9ea2273dbefb3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ek9E_AUcW3ycQ6SS9-Dw6MVIQ7zaG0rMiytaOV7ovCw", function( data ) {
       data.ResultSets.Table1.forEach(vote => {
         $('#voteHistory').append('<tr><td>'+vote.Name+'</td><td>'+vote.Points+'</td><td>'+vote.Reason+'</td></tr>');
-        console.log(vote);
       }); 
+    });
+
+    /**
+    * Populate Chart
+    **/
+    $.post( "https://prod-30.southcentralus.logic.azure.com:443/workflows/b3e7676954bd495eb20fd70d312c8e8c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2X1QJNaW8EHhzUntRq5ZujDX43BYVo6gdLre7lQmcdE", function( chartdata ) {
+      console.log(chartdata);
+      $('#myChart').attr('src',chartdata); 
     });
     </script>
   </body>
