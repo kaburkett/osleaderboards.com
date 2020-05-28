@@ -27,8 +27,9 @@
             </div>
           </div>
 
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" id="myChart"></iframe>
+          <!-- display bar chart with google charts.js -->
+          <div class="">
+            <div id="barchart_material"></div>
           </div>
 
           <h2>Vote History</h2>
@@ -68,8 +69,11 @@
       feather.replace()
     </script>
 
-    <script>
+    <!-- load google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <!-- load spinner functions -->
+    <script>
     function toggleLoading(event){     
       var loadingOverlay = document.querySelector('.loading'); 
       document.activeElement.blur();
@@ -87,16 +91,23 @@
       data.ResultSets.Table1.forEach(vote => {
         $('#voteHistory').append('<tr><td>'+vote.Name+'</td><td>'+vote.Points+'</td><td>'+vote.Reason+'</td></tr>');
       }); 
+      toggleLoading(false);
+      console.log(data);
     });
 
     /**
     * Populate Chart
-    **/
+    */
     $.post( "https://prod-30.southcentralus.logic.azure.com:443/workflows/b3e7676954bd495eb20fd70d312c8e8c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2X1QJNaW8EHhzUntRq5ZujDX43BYVo6gdLre7lQmcdE", function( chartdata ) {
       console.log(chartdata);
-      $('#myChart').attr('src',chartdata); 
+      chartdata.forEach(score => {
+        $('#barchart_material').append('<li>'+score.Name +' Current Score: '+score.Score+'</li>');
+        // i would like to use something like https://github.com/waldobronchart/FlipCounter
+      });
       toggleLoading(false);
     });
+    
     </script>
+
   </body>
 </html>
