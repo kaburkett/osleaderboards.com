@@ -95,7 +95,20 @@
 
         let textWithEmoji =emojiConvertor.replace_colons(vote.Reason);
 
-        $('#voteHistory').append('<tr><td>'+vote.Name+'</td><td>'+vote.Points+'</td><td>'+ textWithEmoji +'</td></tr>');
+        let pointsMarkup = '';
+        
+        if(vote.Points === -1) {
+          pointsMarkup = '<i data-feather="arrow-down"></i>';
+        } else if(vote.Points === 1) {
+          pointsMarkup = '<i data-feather="arrow-up"></i>';
+        } else {
+          // If the points value is something else, just display it.
+          pointsMarkup = vote.Points;
+        }
+
+        $('#voteHistory').append('<tr><td>'+vote.Name+'</td><td>'+ pointsMarkup + '</td><td>'+ textWithEmoji +'</td></tr>');
+      
+        feather.replace();  
       }); 
     });
 
