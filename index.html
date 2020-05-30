@@ -86,11 +86,23 @@
       }
     }
 
-    /**
+    function correctNames(vote) {
+      switch (vote.Name) {
+        case 'IOS':
+          vote.Name = 'iOS';
+          return vote;
+        case 'MacOS':
+          vote.Name = 'macOS';
+          return vote;
+        default:
+          return vote;
+      }
+    }
+      /**
     * Populate history table
     **/
     $.post( "https://prod-18.southcentralus.logic.azure.com:443/workflows/601577ac5dfe47a7a0c9ea2273dbefb3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ek9E_AUcW3ycQ6SS9-Dw6MVIQ7zaG0rMiytaOV7ovCw", function( data ) {
-      data.ResultSets.Table1.forEach(vote => {
+      data.ResultSets.Table1.filter(correctNames).forEach(vote => {
 
 
         let textWithEmoji =emojiConvertor.replace_colons(vote.Reason);
@@ -120,19 +132,19 @@
     $.post( "https://prod-30.southcentralus.logic.azure.com:443/workflows/b3e7676954bd495eb20fd70d312c8e8c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2X1QJNaW8EHhzUntRq5ZujDX43BYVo6gdLre7lQmcdE", function( chartdata ) {
       console.log(chartdata);
       let scoreCards = '';
-      chartdata.forEach(score => {
+      chartdata.filter(correctNames).forEach(score => {
         let image = '';
         switch (score.Name){
           case 'Android':
             image = 'osicons/icons8-android-os-48.png';
             break;
-          case 'IOS':
+          case 'iOS':
             image = 'osicons/icons8-iphone-x-48.png';
             break;
           case 'Linux':
             image = 'osicons/icons8-linux-48.png';
             break;
-          case 'MacOS':
+          case 'macOS':
             image = 'osicons/icons8-mac-logo-48.png';
             break;
           case 'Windows':
