@@ -11,7 +11,7 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/emoji-js@3.5.0/lib/emoji.min.js" integrity="sha256-8Tt+6dP9QsaitGs6ANbhoCJcECQSAYF/wF3mcufE27E=" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/emoji-js@3.5.0/lib/emoji.min.js" integrity="sha256-8Tt+6dP9QsaitGs6ANbhoCJcECQSAYF/wF3mcufE27E=" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -76,8 +76,8 @@
     emojiConvertor.replace_mode = 'unified';
     emojiConvertor.allow_native = true;
 
-    function toggleLoading(event){     
-      var loadingOverlay = document.querySelector('.loading'); 
+    function toggleLoading(event){
+      var loadingOverlay = document.querySelector('.loading');
       document.activeElement.blur();
       if (event == true){
         loadingOverlay.classList.remove('hidden');
@@ -91,25 +91,25 @@
     **/
     $.post( "https://prod-18.southcentralus.logic.azure.com:443/workflows/601577ac5dfe47a7a0c9ea2273dbefb3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ek9E_AUcW3ycQ6SS9-Dw6MVIQ7zaG0rMiytaOV7ovCw", function( data ) {
       data.ResultSets.Table1.forEach(vote => {
-        
+
 
         let textWithEmoji =emojiConvertor.replace_colons(vote.Reason);
 
         let pointsMarkup = '';
-        
+
         if(vote.Points === -1) {
-          pointsMarkup = '<i data-feather="arrow-down"></i>';
+          pointsMarkup = '<i data-feather="arrow-down" class="text-danger"></i>';
         } else if(vote.Points === 1) {
-          pointsMarkup = '<i data-feather="arrow-up"></i>';
+          pointsMarkup = '<i data-feather="arrow-up" class="text-primary"></i>';
         } else {
           // If the points value is something else, just display it.
           pointsMarkup = vote.Points;
         }
 
         $('#voteHistory').append('<tr><td>'+vote.Name+'</td><td>'+ pointsMarkup + '</td><td>'+ textWithEmoji +'</td></tr>');
-      
-        feather.replace();  
-      }); 
+
+        feather.replace({'stroke-width': 4});
+      });
       toggleLoading(false);
       console.log(data);
     });
@@ -132,8 +132,8 @@
           case 'Linux':
             image = 'osicons/icons8-linux-48.png';
             break;
-          case 'MacOS': 
-            image = 'osicons/icons8-mac-logo-48.png';    
+          case 'MacOS':
+            image = 'osicons/icons8-mac-logo-48.png';
             break;
           case 'Windows':
             image = 'osicons/icons8-windows-10-48.png';
@@ -157,13 +157,13 @@
           }, {
           duration: 1000,
           easing: 'swing',
-          step: function (now) {                      
+          step: function (now) {
               $(this).text(this.Counter.toFixed(0));
           }
         });
       });
     });
-    
+
     </script>
 
   </body>
