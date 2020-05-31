@@ -11,12 +11,20 @@
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/emoji-js@3.5.0/lib/emoji.min.js" integrity="sha256-8Tt+6dP9QsaitGs6ANbhoCJcECQSAYF/wF3mcufE27E=" crossorigin="anonymous"></script>
+
+    <!-- Emoji-js library for converting emoji short code to actual emoji -->
+    <script
+      src         = "https://cdn.jsdelivr.net/npm/emoji-js@3.5.0/lib/emoji.min.js"
+      integrity   = "sha256-8Tt+6dP9QsaitGs6ANbhoCJcECQSAYF/wF3mcufE27E="
+      crossorigin = "anonymous">
+    </script>
   </head>
 
   <body>
     <nav class="navbar navbar-dark sticky-top  flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><b>OS Leaderboards</b></a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+        <b>OS Leaderboards</b>
+      </a>
     </nav>
 
     <div class="container-fluid">
@@ -77,7 +85,9 @@
 
     function toggleLoading(event){
       var loadingOverlay = document.querySelector('.loading');
+
       document.activeElement.blur();
+
       if (event == true){
         loadingOverlay.classList.remove('hidden');
       } else {
@@ -97,13 +107,11 @@
           return vote;
       }
     }
-      /**
+    /**
     * Populate history table
     **/
     $.post( "https://prod-18.southcentralus.logic.azure.com:443/workflows/601577ac5dfe47a7a0c9ea2273dbefb3/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ek9E_AUcW3ycQ6SS9-Dw6MVIQ7zaG0rMiytaOV7ovCw", function( data ) {
       data.ResultSets.Table1.filter(correctNames).forEach(vote => {
-
-
         let textWithEmoji =emojiConvertor.replace_colons(vote.Reason);
 
         let pointsMarkup = '';
@@ -117,10 +125,17 @@
           pointsMarkup = vote.Points;
         }
 
-        $('#voteHistory').append('<tr><td>'+vote.Name+'</td><td>'+ pointsMarkup + '</td><td>'+ textWithEmoji +'</td></tr>');
+        $('#voteHistory').append(`
+            <tr>
+                <td>${ vote.Name     }</td>
+                <td>${ pointsMarkup  }</td>
+                <td>${ textWithEmoji }</td>
+            </tr>
+        `);
 
         feather.replace({'stroke-width': 4});
       });
+
       toggleLoading(false);
       console.log(data);
     });
@@ -130,7 +145,9 @@
     */
     $.post( "https://prod-30.southcentralus.logic.azure.com:443/workflows/b3e7676954bd495eb20fd70d312c8e8c/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2X1QJNaW8EHhzUntRq5ZujDX43BYVo6gdLre7lQmcdE", function( chartdata ) {
       console.log(chartdata);
+
       let scoreCards = '';
+
       chartdata.filter(correctNames).forEach(score => {
         let image = '';
         switch (score.Name){
@@ -152,30 +169,43 @@
           default:
             image = 'osicons/icons8-symlink-file-100.png';
         }
-          scoreCards += `<div class="col-md-2 col-xs-6 card text-center shadow">
-                            <img class="card-img-top mx-auto d-block mt-4" src="./${image}" style="max-height: 45px; max-width: 45px;" alt="${score.Name}">
-                            <div class="card-body">
-                              <h4 class="card-title count" data-value="${score.Score}">${score.Score}</h4>
-                              <h6 class="card-subtitle"><b>${score.Name}</b></h6>
-                            </div>
-                          </div>`;
+          scoreCards += `
+            <div class="col-md-2 col-xs-6 card text-center shadow">
+
+              <img
+                class = "card-img-top mx-auto d-block mt-4"
+                src   = "./${image}"
+                style = "max-height: 45px; max-width: 45px;"
+                alt   = "${score.Name}">
+
+              <div class="card-body">
+                <h4 class="card-title count" data-value="${score.Score}">
+                    ${score.Score}
+                </h4>
+                <h6 class="card-subtitle">
+                    <b>${score.Name}</b>
+                </h6>
+              </div>
+            </div>
+          `;
       });
+
       $('#score').append(scoreCards);
+
       toggleLoading(false);
+
       $('.count').each(function () {
         $(this).prop('Counter', 0).animate({
-              Counter: $(this).data('value')
-          }, {
+          Counter: $(this).data('value')
+        }, {
           duration: 1000,
           easing: 'swing',
           step: function (now) {
-              $(this).text(this.Counter.toFixed(0));
+            $(this).text(this.Counter.toFixed(0));
           }
         });
       });
     });
-
     </script>
-
   </body>
 </html>
